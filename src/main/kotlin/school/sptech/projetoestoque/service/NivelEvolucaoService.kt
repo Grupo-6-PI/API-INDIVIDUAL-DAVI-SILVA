@@ -35,11 +35,11 @@ class NivelEvolucaoService(
 
     fun getListaNivelEvolucao(): List<NivelEvolucao> {
 
-        var lista:MutableList<NivelEvolucao> = nivelEvolucaoRepository.findAll()
+        val lista:MutableList<NivelEvolucao> = nivelEvolucaoRepository.findAll()
 
         validateLista(lista)
 
-        var resposta = lista.map {
+        val resposta = lista.map {
             modelMapper.map(
                 it,
                 NivelEvolucao::class.java
@@ -52,9 +52,9 @@ class NivelEvolucaoService(
 
     fun getNivelEvolucao(id: Long): NivelEvolucaoResponse {
         validateId(id)
-        var nivelEvolucao:NivelEvolucao = nivelEvolucaoRepository.findById(id).get()
+        val nivelEvolucao:NivelEvolucao = nivelEvolucaoRepository.findById(id).get()
 
-        var response:NivelEvolucaoResponse = modelMapper.map(
+        val response:NivelEvolucaoResponse = modelMapper.map(
             nivelEvolucao,
             NivelEvolucaoResponse::class.java
         )
@@ -65,14 +65,14 @@ class NivelEvolucaoService(
 
     fun postNivelEvolucao(nivelEvolucaoRequest: NivelEvolucaoRequest): NivelEvolucaoResponse {
 
-        var entity:NivelEvolucao = modelMapper.map(
+        val entity:NivelEvolucao = modelMapper.map(
             nivelEvolucaoRequest,
             NivelEvolucao::class.java
         )
 
-        var nivelSalvo = nivelEvolucaoRepository.save(entity)
+        val nivelSalvo = nivelEvolucaoRepository.save(entity)
 
-        var response:NivelEvolucaoResponse = modelMapper.map(
+        val response:NivelEvolucaoResponse = modelMapper.map(
             nivelSalvo,
             NivelEvolucaoResponse::class.java
         )
@@ -84,7 +84,7 @@ class NivelEvolucaoService(
     fun deleteNivelEvolucao(id: Long):NivelEvolucaoResponse {
         validateId(id)
 
-        var entity:NivelEvolucaoResponse = getNivelEvolucao(id)
+        val entity:NivelEvolucaoResponse = getNivelEvolucao(id)
 
         nivelEvolucaoRepository.deleteById(id)
 
