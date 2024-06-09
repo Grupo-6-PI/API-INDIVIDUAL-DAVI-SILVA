@@ -8,8 +8,10 @@ class Digimon(
     private var id:Long,
     private var nome:String,
     private var personalidade:String,
-    @ManyToOne
-    private var especie: Especie
+    @field:ManyToOne
+    private var especie: Especie,
+    @field:ManyToOne
+    private var treinador: Treinador
 ) {
 
     fun getId(): Long {
@@ -42,6 +44,14 @@ class Digimon(
 
     fun setEspecie(especie: Especie) {
         this.especie = especie
+    }
+
+    fun getTreinador(): Treinador {
+        return treinador
+    }
+
+    fun setTreinador(treinador: Treinador) {
+        this.treinador = treinador
     }
 
 }
